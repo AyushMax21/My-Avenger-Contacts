@@ -10,13 +10,13 @@ App showing the use of recycler view
 - Implement methods:
   * onCreateViewHolder(parent, viewType) {
       View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_list_item_layout, parent, false);
-      return new CustomViewHolder(view);
+      return new CustomViewHolder(view); </br>
       }
   * onBindViewHolder() {}
   * getItemCount() { return number_of_item_to_be_show; }
-- Inside the activity:
-  RecyclerView recyclerView = findViewById(R.id.recyclerView);
-  LinearLayoutManager recyclerViewLayoutManager = new LinearLayoutManger(this);
-  CustomAdapter myAdapter = new CustomAdapter():
-  recyclerView.setLayoutManager(recyclerViewLayoutManager);
-  recyelerView.setAdapter(myAdapter);
+- Inside the activity:</br>
+  RecyclerView recyclerView = findViewById(R.id.recyclerView);</br>
+  LinearLayoutManager recyclerViewLayoutManager = new LinearLayoutManger(this);</br>
+  CustomAdapter myAdapter = new CustomAdapter():</br>
+  recyclerView.setLayoutManager(recyclerViewLayoutManager);</br>
+  recyelerView.setAdapter(myAdapter);</br>
