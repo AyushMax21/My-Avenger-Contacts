@@ -21,10 +21,22 @@ public class MainActivity extends AppCompatActivity {
       LinearLayoutManager listItemLayoutManger = new LinearLayoutManager(this);
       recyclerView.setLayoutManager(listItemLayoutManger);
 
-      ListItemAdapter myAdapter = new ListItemAdapter();
+      int[] randomAges = generateRandomAges(100);
+      String[] names = {}, phones = {}, addresses = {}, incomes;
+
+      ListItemAdapter myAdapter = new ListItemAdapter(randomAges, names, phones, addresses, incomes, );
 
       recyclerView.setAdapter(myAdapter);
 
-
    }
+
+   public int[] generateRandomAges(int ages) {
+      int[] ageList = new int[ages];
+      for (int i = 0; i < ages; i++) {
+         int randomAge = (int) (Math.random() * 100);
+         ageList[i] = randomAge;
+      }
+      return ageList;
+   }
+
 }

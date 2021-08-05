@@ -13,22 +13,36 @@ import org.jetbrains.annotations.NotNull;
 
 public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ListItemViewHolder> {
 
-   @NonNull
-   @NotNull
-   @Override
-   public ListItemViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-      View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
-      return new ListItemViewHolder(view);
+   int[] randomAges;
+   String[] names, phones, addresses;
+
+   public ListItemAdapter(int[] randomAgeList, String[] names, String[] phones, String[] addresses) {
+      randomAges = randomAgeList;
    }
 
    @Override
-   public void onBindViewHolder(@NonNull @NotNull ListItemAdapter.ListItemViewHolder holder, int position) {
-      //we'll do this later.
+   public ListItemViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
+
+      LayoutInflater listItemLayout = LayoutInflater.from(parent.getContext());
+
+      View v = listItemLayout.inflate(R.layout.list_item, parent, false);
+
+      ListItemViewHolder currentViewHolder = new ListItemViewHolder(v);
+
+      return currentViewHolder;
+   }
+
+   @Override
+   public void onBindViewHolder(@NonNull @NotNull ListItemViewHolder holder, int position) {
+
+      int currentAge = randomAges[position];
+
+      holder.bind(currentAge);
    }
 
    @Override
    public int getItemCount() {
-      return 100;
+      return randomAges.length;
    }
 
    class ListItemViewHolder extends RecyclerView.ViewHolder {
@@ -43,6 +57,10 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ListIt
          tvPhone = itemView.findViewById(R.id.tvPhone);
          tvAddress = itemView.findViewById(R.id.tvAddress);
          ivAvenger = itemView.findViewById(R.id.ivAvenger);
+      }
+
+      public void bind(int age) {
+         tvAge.setText(String.valueOf(age));
       }
 
    }
