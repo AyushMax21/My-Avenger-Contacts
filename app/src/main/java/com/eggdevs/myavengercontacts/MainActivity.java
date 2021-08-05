@@ -7,6 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+import com.eggdevs.myavengercontacts.models.Person;
+
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
    RecyclerView recyclerView;
@@ -18,25 +22,29 @@ public class MainActivity extends AppCompatActivity {
 
       recyclerView = findViewById(R.id.recyclerView);
 
-      LinearLayoutManager listItemLayoutManger = new LinearLayoutManager(this);
-      recyclerView.setLayoutManager(listItemLayoutManger);
+      LinearLayoutManager listItemLayoutManager = new LinearLayoutManager(this);
+      recyclerView.setLayoutManager(listItemLayoutManager);
 
-      int[] randomAges = generateRandomAges(100);
-      String[] names = {}, phones = {}, addresses = {}, incomes;
+      ArrayList<Person> personList = new ArrayList<Person> ();
 
-      ListItemAdapter myAdapter = new ListItemAdapter(randomAges, names, phones, addresses, incomes, );
+      personList.add(new Person(R.drawable.america, 45, 84378347, "Steve Rogers", "America"));
+      personList.add(new Person(R.drawable.marvel, 80, 524554, "Carol Danvers", "London"));
+      personList.add(new Person(R.drawable.iron, 24, 84377, "Tony Stark", "America"));
+      personList.add(new Person(R.drawable.america, 45, 84378347, "Steve Rogers", "America"));
+      personList.add(new Person(R.drawable.america, 45, 84378347, "Steve Rogers", "America"));
+      personList.add(new Person(R.drawable.america, 45, 84378347, "Steve Rogers", "America"));
+      personList.add(new Person(R.drawable.america, 45, 84378347, "Steve Rogers", "America"));
+      personList.add(new Person(R.drawable.america, 45, 84378347, "Steve Rogers", "America"));
+      personList.add(new Person(R.drawable.america, 45, 84378347, "Steve Rogers", "America"));
+      personList.add(new Person(R.drawable.america, 45, 84378347, "Steve Rogers", "America"));
+      personList.add(new Person(R.drawable.hulk, 52, 8717871, "Bruce Banner", "India"));
+
+      //ctrl + d
+
+      ListItemAdapter myAdapter = new ListItemAdapter(personList);
 
       recyclerView.setAdapter(myAdapter);
 
-   }
-
-   public int[] generateRandomAges(int ages) {
-      int[] ageList = new int[ages];
-      for (int i = 0; i < ages; i++) {
-         int randomAge = (int) (Math.random() * 100);
-         ageList[i] = randomAge;
-      }
-      return ageList;
    }
 
 }

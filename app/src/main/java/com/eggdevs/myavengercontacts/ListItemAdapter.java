@@ -9,40 +9,45 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.eggdevs.myavengercontacts.models.Person;
+
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 
 public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ListItemViewHolder> {
 
-   int[] randomAges;
-   String[] names, phones, addresses;
+   ArrayList<Person> personList;
 
-   public ListItemAdapter(int[] randomAgeList, String[] names, String[] phones, String[] addresses) {
-      randomAges = randomAgeList;
+   public ListItemAdapter(ArrayList<Person> personList) {
+      this.personList = personList;
    }
 
    @Override
    public ListItemViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
 
+// Can also be done in this way.
+/*
+   View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
+return new ListItemViewHolder(view);
+*/
+
       LayoutInflater listItemLayout = LayoutInflater.from(parent.getContext());
-
       View v = listItemLayout.inflate(R.layout.list_item, parent, false);
-
       ListItemViewHolder currentViewHolder = new ListItemViewHolder(v);
-
       return currentViewHolder;
    }
 
    @Override
    public void onBindViewHolder(@NonNull @NotNull ListItemViewHolder holder, int position) {
 
-      int currentAge = randomAges[position];
-
-      holder.bind(currentAge);
+      Person currentPerson = personList.get(position);
+      holder.bind(currentPerson);
    }
 
    @Override
    public int getItemCount() {
-      return randomAges.length;
+      return personList.size();
    }
 
    class ListItemViewHolder extends RecyclerView.ViewHolder {
@@ -59,8 +64,12 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ListIt
          ivAvenger = itemView.findViewById(R.id.ivAvenger);
       }
 
-      public void bind(int age) {
-         tvAge.setText(String.valueOf(age));
+      public void bind(Person person) {
+         tvAge.setText(String.valueOf(person.age));
+         tvName.setText(person.name);
+         ivAvenger.setImageResource(person.contactImage);
+         tvAddress.setText(person.address);
+         tvPhone.setText(String.valueOf(person.phone));
       }
 
    }
