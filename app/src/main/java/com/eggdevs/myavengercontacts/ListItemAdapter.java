@@ -18,9 +18,11 @@ import java.util.ArrayList;
 public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ListItemViewHolder> {
 
    ArrayList<Person> personList;
+   OnContactItemClick onContactItemClick;
 
-   public ListItemAdapter(ArrayList<Person> personList) {
+   public ListItemAdapter(ArrayList<Person> personList, OnContactItemClick onContactItemClick) {
       this.personList = personList;
+      this.onContactItemClick = onContactItemClick;
    }
 
    @Override
@@ -62,6 +64,18 @@ return new ListItemViewHolder(view);
          tvPhone = itemView.findViewById(R.id.tvPhone);
          tvAddress = itemView.findViewById(R.id.tvAddress);
          ivAvenger = itemView.findViewById(R.id.ivAvenger);
+
+         itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+               int position = getAdapterPosition();
+
+
+               onContactItemClick.onContactClick(position);
+
+            }
+         });
       }
 
       public void bind(Person person) {
@@ -74,5 +88,8 @@ return new ListItemViewHolder(view);
 
    }
 
+   public interface OnContactItemClick {
+      void onContactClick(int position);
+   }
 
 }
